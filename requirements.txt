@@ -1,0 +1,33 @@
+# ============================================================
+# GaussianScan-Recon Dependencies
+# ============================================================
+# Core dependencies for the simplified 3DGS pipeline.
+# For real 3DGS training, additional CUDA dependencies are required
+# (see docs/README.md for full setup instructions).
+
+# Numerical & Image Processing
+numpy>=1.24.0
+opencv-python>=4.8.0
+Pillow>=10.0.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+
+# Configuration & Utilities
+PyYAML>=6.0
+tqdm>=4.65.0
+rich>=13.0.0
+
+# 3D Point Cloud I/O
+open3d>=0.17.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Optional: for real depth estimation (not required for mock pipeline)
+# torch>=2.1.0
+# torchvision>=0.16.0
+
+# Optional: for real 3DGS training
+# diff-gaussian-rasterization  (install from submodule)
+# simple-knn                   (install from submodule)

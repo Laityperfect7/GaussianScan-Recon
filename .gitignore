@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Project outputs — ignore all generated files
+outputs/*
+outputs/checkpoints/
+outputs/frames/
+outputs/depth/
+outputs/renders/
+outputs/logs/
+
+# Keep output directory structure (only .gitkeep is tracked)
+!outputs/.gitkeep
+
+# Ignore root-level generated output files explicitly
+outputs/*.png
+outputs/*.jpg
+outputs/*.json
+outputs/*.html
+outputs/*.npz
+outputs/*.ply
+
+# Data files (keep directory structure, ignore large files)
+data/samples/**/*.mp4
+data/samples/**/*.avi
+data/samples/**/*.mov
+data/samples/**/*.ply
+data/samples/**/*.npz
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Conda
+*.conda
+
+# Logs
+*.log
+logs/

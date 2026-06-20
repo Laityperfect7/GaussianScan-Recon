@@ -1,0 +1,127 @@
+# ============================================================
+# GaussianScan-Recon 默认配置
+# ============================================================
+# 配置文件采用 YAML 格式，分为多个模块：
+#   - input:    输入数据设置
+#   - preprocessing: 预处理参数
+#   - depth:    深度估计设置
+#   - gaussian: 3D Gaussian 参数
+#   - training: 训练参数
+#   - visualization: 可视化参数
+
+# ------------------------------
+# 场景信息
+# ------------------------------
+scene:
+  name: "default"
+  type: "object_scan"          # object_scan | room_scene | custom
+  description: "Default configuration for object scanning"
+
+# ------------------------------
+# 输入设置
+# ------------------------------
+input:
+  # 输入类型: video | images | demo
+  type: "demo"
+
+  # 视频输入（当 type=video）
+  video_path: "demo/sample.mp4"
+  video_start_sec: 0.0
+  video_end_sec: null          # null 表示到视频结尾
+
+  # 图像输入（当 type=images）
+  image_dir: "data/samples/object_scan"
+  image_extensions: [".jpg", ".jpeg", ".png", ".bmp"]
+
+  # 输出尺寸
+  resolution: [1280, 720]      # [width, height]
+  keep_aspect_ratio: true
+
+# ------------------------------
+# 预处理参数
+# ------------------------------
+preprocessing:
+  max_frames: 200              # 最大提取帧数
+  min_frame_interval: 1        # 最小帧间隔
+  blur_threshold: 50.0         # 模糊过滤阈值（拉普拉斯方差），null 禁用
+  resize_short_edge: 960       # 短边缩放到此像素数，null 禁用
+  output_format: "jpg"         # jpg | png
+
+# ------------------------------
+# 深度估计设置
+# ------------------------------
+depth:
+  # 模型: mock | depth-anything-v2 | zoedepth | midas
+  model: "mock"
+
+  # Mock 模式设置 (model=mock 时生效)
+  mock:
+    mode: "radial"             # radial | gradient | structured
+    noise_level: 0.02
+
+  # Depth Anything V2 设置 (model=depth-anything-v2)
+  depth_anything:
+    checkpoint: "vitl"         # vitl | vitb | vits
+    encoder: "vitl"
+
+  # ZoeDepth 设置 (model=zoedepth)
+  zoedepth:
+    checkpoint: "ZoeD_NK"
+
+  # MiDaS 设置 (model=midas)
+  midas:
+    checkpoint: "DPT_Large"
+
+# ------------------------------
+# 3D Gaussian 参数
+# ------------------------------
+gaussian:
+  num_init: 50000              # 初始 Gaussian 点数
+  sh_degree: 3                 # 球谐阶数（0=仅颜色）
+  scene_bounds: [2.0, 2.0, 2.0]  # 场景范围 [x, y, z]
+  base_scale: 0.02             # 基础 Gaussian 尺度
+  max_scale: 0.5               # 最大尺度
+  opacity_init: 0.9            # 初始不透明度
+
+# ------------------------------
+# 训练参数
+# ------------------------------
+training:
+  iterations: 10000            # 总迭代数
+  densify_until: 7000          # 密度控制停止步数
+  densify_interval: 100        # 密度控制间隔
+  opacity_reset_interval: 3000 # 不透明度重置间隔
+
+  # 学习率
+  learning_rate:
+    position: 0.00016
+    scale: 0.005
+    opacity: 0.05
+    color: 0.0025
+    rotation: 0.001
+
+  # Loss 权重
+  loss:
+    lambda_l1: 0.8
+    lambda_ssim: 0.2
+
+  # Batch
+  batch_size: 1
+
+# ------------------------------
+# 可视化参数
+# ------------------------------
+visualization:
+  orbit:
+    radius: 3.0                # 轨道半径（米）
+    num_views: 36              # 视角数量
+    height_range: [-1.5, 1.5]  # 高度变化范围
+
+  rendering:
+    resolution: [1280, 720]    # 渲染分辨率
+    background_color: [0.05, 0.05, 0.08]
+    alpha_threshold: 0.01
+
+  output:
+    format: "png"              # 输出格式
+    dpi: 150                   # 输出 DPI
