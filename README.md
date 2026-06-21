@@ -5,16 +5,19 @@
 
 # 🔮 GaussianScan-Recon
 
-### *高斯泼溅物体扫描与场景复现系统*
+### *3D Gaussian Splatting Pipeline for Object Scanning &amp; Scene Reconstruction*
 
-### *A practical 3D Gaussian Splatting pipeline for object scanning and scene reconstruction*
+<p align="center">
+  <strong>From images or monocular video to explorable 3D scenes — modular, practical, production-ready.</strong><br>
+  A complete 3DGS pipeline with frame extraction, depth estimation, Gaussian modeling, and visualization export.
+</p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![CUDA Optional](https://img.shields.io/badge/CUDA-optional-brightgreen.svg)](https://developer.nvidia.com/cuda-toolkit)
 [![Paper](https://img.shields.io/badge/Paper-3DGS-red.svg)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/)
 
-**简体中文** | [English](#english)
+**English** | [简体中文](#-what-is-gaussianscan-recon--这是什么)
 
 </div>
 
